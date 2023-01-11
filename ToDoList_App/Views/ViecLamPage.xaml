@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:ToDoList_App.Controls" 
+             xmlns:dateTime="clr-namespace:ToDoList_App.Models"
+             BackgroundColor="{DynamicResource Gray-200}"
+             x:Class="ToDoList_App.Views.ViecLamPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cá nhân" x:Name="TICaNhan" Clicked="TICaNhan_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto, *">
+
+            <StackLayout Grid.Row="0">
+                <CollectionView x:Name="ViecLamList"
+                                SelectionMode="Single"
+                                SelectionChanged="ViecLamList_SelectionChanged">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                                        <SwipeItem Text="Xóa" BackgroundColor="Red"
+                                                   x:Name="SWDelete"
+                                                   CommandParameter="{Binding .}"
+                                                   Invoked="SWDelete_Invoked"></SwipeItem>
+                                        <SwipeItem Text="Sửa" BackgroundColor="LightGreen"
+                                                   x:Name="SWEdit"
+                                                   CommandParameter="{Binding .}"
+                                                   Invoked="SWEdit_Invoked"></SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <!--View of each card item-->
+                                <controls:CustomShadowFrame
+                                        Margin="10,2,10,5"
+                                        Padding="5,10,0,10"
+                                        BackgroundColor="{DynamicResource GrayShadowColor}"
+                                        BorderColor="{DynamicResource GrayShadowColor}"
+                                        BorderWidth="1"
+                                        CornerRadius="4"
+                                        HasShadow="True"
+                                        HorizontalOptions="FillAndExpand"
+                                        Radius="4"
+                                        VerticalOptions="FillAndExpand">
+                                    <Grid RowDefinitions="Auto, Auto"
+                                          ColumnDefinitions="Auto, Auto">
+                                        <CheckBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+                                                  IsChecked="{Binding IsDone, Mode=TwoWay}"/>
+
+                                        <Label Grid.Row="0" Grid.Column="1"
+                                            Text="{Binding NoiDungViecLam}"
+                                            Margin="5,5,5,0"
+                                            VerticalOptions="Center"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            FontSize="Medium"></Label>
+
+                                        <Label Grid.Row="1" Grid.Column="1"
+                                            Text="{Binding ThoiGian}"
+                                            Margin="5,0,5,5"
+                                            VerticalOptions="Center"
+                                            TextColor="{DynamicResource PrimaryColor}"
+                                            FontSize="Small"></Label>
+
+                                    </Grid>
+                                </controls:CustomShadowFrame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <Button
+                x:Name="AddViecLamBtn"
+                Grid.Row="1"
+                HorizontalOptions="Fill"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="Thêm việc làm" 
+                Clicked="AddViecLamBtn_Clicked"/>
+            
+            <ContentView x:Name="popupAddView" BackgroundColor="#C0808080" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Padding="10, 15" Orientation="Vertical" WidthRequest="300" BackgroundColor="White">
+                        <Label x:Name="ViecLamLabelPopup" Margin="20,20,20,10" FontSize="Large" TextColor="Black"/>
+                        
+                        <Entry x:Name="ViecLamEntry" Margin="20,20,20,10" Placeholder="Nội dung việc làm mới"></Entry>
+                        
+                        <!--<DatePicker Margin="20,20,20,10"
+                                    MaximumDate="{Binding MaxDate}"
+                                    Date="{Binding Date}" 
+                                    Format="D"
+                                    DateSelected="DatePicker_DateSelected" />-->
+
+                        <dateTime:DateTimePicker x:Name="DateTimeEntry"  Margin="20,20,20,10"/>
+
+                        <Grid ColumnDefinitions="Auto, Auto" HorizontalOptions="Center">
+                            <Button x:Name="CancelViecLamPopup" Grid.Column="0" Margin="20,0,20,0" 
+                                    Text="Hủy"
+                                    Style="{StaticResource GradientButtonStyle}"
+                                    Clicked="CancelViecLamPopup_Clicked"/>
+                            <Button x:Name="AddViecLamPopup" Grid.Column="1" Margin="20,0,20,0" 
+                                    Style="{StaticResource GradientButtonStyle}"
+                                    Clicked="AddViecLamPopup_Clicked"/>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </Grid>
+    </ContentPage.Content>
+
+    
+    
+</ContentPage>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:ToDoList_App.Controls"
+             x:Name="InfoUserList"
+             x:Class="ToDoList_App.Views.InfoUserPage"
+             Title="Thông tin cá nhân">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto, Auto, 20*">
+
+            <StackLayout Grid.Row="0">
+                <Label Text="Tên:"
+                        Margin="5"
+                        VerticalOptions="Center"
+                        TextColor="{DynamicResource Gray-900}"
+                        FontSize="Medium"></Label>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                            <SwipeItem Text="Sửa" BackgroundColor="LightGreen"
+                                                   x:Name="SWEditTenUser"
+                                                   CommandParameter="{Binding .}"
+                                                   Invoked="SWEditTenUser_Invoked"></SwipeItem>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <!--View of each card item-->
+                    <controls:CustomShadowFrame
+                                            Grid.Row="0"
+                                            Margin="10,2,10,5"
+                                            Padding="5,10,0,10"
+                                            BackgroundColor="{DynamicResource GrayShadowColor}"
+                                            BorderColor="{DynamicResource GrayShadowColor}"
+                                            BorderWidth="1"
+                                            CornerRadius="4"
+                                            HasShadow="True"
+                                            HorizontalOptions="FillAndExpand"
+                                            Radius="4"
+                                            VerticalOptions="FillAndExpand">
+
+                        <Label Text="{Binding TenUser}"
+                                    Margin="5"
+                                    VerticalOptions="Center"
+                                    TextColor="{DynamicResource Gray-900}"
+                                    FontSize="Medium"></Label>
+                    </controls:CustomShadowFrame>
+
+                </SwipeView>
+
+                <Label Text="Email:"
+                        Margin="5"
+                        VerticalOptions="Center"
+                        TextColor="{DynamicResource Gray-900}"
+                        FontSize="Medium"></Label>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                            <SwipeItem Text="Sửa" BackgroundColor="LightGreen"
+                                                   x:Name="SWEditEmailUser"
+                                                   CommandParameter="{Binding .}"
+                                                   Invoked="SWEditEmailUser_Invoked"></SwipeItem>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <!--View of each card item-->
+
+                    <controls:CustomShadowFrame
+                                        Grid.Row="1"
+                                        Margin="10,2,10,5"
+                                        Padding="5,10,0,10"
+                                        BackgroundColor="{DynamicResource GrayShadowColor}"
+                                        BorderColor="{DynamicResource GrayShadowColor}"
+                                        BorderWidth="1"
+                                        CornerRadius="4"
+                                        HasShadow="True"
+                                        HorizontalOptions="FillAndExpand"
+                                        Radius="4"
+                                        VerticalOptions="FillAndExpand">
+
+                        <Label Text="{Binding EmailUser}"
+                                            Margin="5"
+                                            VerticalOptions="Center"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            FontSize="Medium"></Label>
+                    </controls:CustomShadowFrame>
+                </SwipeView>
+            </StackLayout>
+
+            <Button
+                x:Name="ResetPasswordBtn"
+                Grid.Row="1"
+                Command="{Binding LogOutCommand}"
+                HorizontalOptions="Fill"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="Đổi mật khẩu" 
+                Clicked="ResetPasswordBtn_Clicked"/>
+
+            <Button
+                x:Name="LogOutBtn"
+                Grid.Row="2"
+                Command="{Binding LogOutCommand}"
+                HorizontalOptions="Fill"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="Đăng xuất" 
+                Clicked="LogOutBtn_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

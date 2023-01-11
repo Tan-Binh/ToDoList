@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{DynamicResource Gray-200}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="ToDoList_App.Views.SignUpPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <!--  Close button  -->
+            <Button x:Name="CloseSinUpPage"
+                Margin="8"
+                Command="{Binding BackButtonCommand}"
+                FontSize="20"
+                HorizontalOptions="End"
+                Style="{StaticResource IconButtonStyle}"
+                Text="X"
+                TextColor="{DynamicResource Steel}"
+                VerticalOptions="Start" 
+                Clicked="CloseSinUpPage_Clicked"/>
+
+            <StackLayout Spacing="0" 
+                        VerticalOptions="CenterAndExpand"
+                        Margin="20,32"
+                        WidthRequest="{OnPlatform Default='-1',
+                                            UWP='350'}">
+                <Grid
+                    RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                    RowSpacing="0"
+                    VerticalOptions="CenterAndExpand">
+
+                    <!--  Label to display the title of this page  -->
+                    <Label Grid.Row="0"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                            FontFamily="Montserrat-SemiBold"
+                            TextColor="{DynamicResource Gray-900}"
+                            FontSize="20"
+                            Text="Đăng ký" />
+
+                    <!--  Entry to get username from user  -->
+                    <Frame Grid.Row="1" Padding="0.24" Margin="0, 10"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
+                            BorderColor="Gray"
+                            CornerRadius="20">
+                        <Entry x:Name="NameEntry" Margin="15,0"
+                               Style="{StaticResource BorderlessEntryStyle}"
+                               Placeholder="Tên"/>
+                    </Frame>
+
+                    <!--  Entry to get email ID from user  -->
+                    <Frame Grid.Row="2" Padding="0.24" Margin="0, 10"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
+                            BorderColor="Gray"
+                            CornerRadius="20">
+                        <Entry x:Name="EmailEntry" Margin="15,0"
+                               Style="{StaticResource BorderlessEntryStyle}"
+                                Keyboard="Email"
+                                Placeholder="Email"/>
+                    </Frame>
+
+                    <!--  Entry to get password from user  -->
+                    <Frame Grid.Row="3" Padding="0.24" Margin="0, 10"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
+                            BorderColor="Gray"
+                            CornerRadius="20">
+                        <Entry x:Name="PasswordEntry" Margin="15,0"
+                                Style="{StaticResource BorderlessEntryStyle}"
+                                IsPassword="True"
+                                Placeholder="Mật khẩu"/>
+                    </Frame>
+
+                    <!--  Entry to get the confirm password from user  -->
+                    <Frame Grid.Row="4" Padding="0.24" Margin="0, 10"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
+                            BorderColor="Gray"
+                            CornerRadius="20">
+                        <Entry x:Name="ConfirmPasswordEntry" Margin="15,0"
+                                Style="{StaticResource BorderlessEntryStyle}"
+                                IsPassword="True"
+                                Placeholder="Xác nhận lại mật khẩu"/>
+                    </Frame>
+
+                    <!--  Sign-up button  -->
+                    <Button x:Name="SignUpBtn" Grid.Row="5" Margin="0,16"
+                            Style="{StaticResource GradientButtonStyle}"
+                            Text="Đăng ký" 
+                            Clicked="SignUpBtn_Clicked"/>
+                </Grid>
+
+                <StackLayout HorizontalOptions="Center"
+                                Orientation="Horizontal"
+                                Spacing="1"
+                                VerticalOptions="End">
+                    <Label Margin="0,10" HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                            FontSize="14"
+                            FontFamily="Montserrat-Medium"
+                            Text="Bạn đã có tài khoản?"
+                            TextColor="{DynamicResource Gray-900}"
+                            VerticalTextAlignment="Center" />
+
+                    <!--  Sign-up button  -->
+                    <Button x:Name="SinInLabel" Margin="0,16"
+                            FontSize="12"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            BackgroundColor="Transparent"
+                            TextColor="{DynamicResource PrimaryColor}"
+                            FontFamily="Montserrat-SemiBold"
+                            Text="Đăng nhập"
+                            Clicked="SinInLabel_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

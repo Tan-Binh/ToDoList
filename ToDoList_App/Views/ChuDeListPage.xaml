@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:ToDoList_App.Controls"
+             BackgroundColor="{DynamicResource Gray-200}"
+             x:Class="ToDoList_App.Views.ChuDeListPage"
+             Title="Chủ đề">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cá nhân" x:Name="TICaNhan" Clicked="TICaNhan_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto, *">
+
+            <StackLayout Grid.Row="0">
+                <CollectionView x:Name="ChuDeList"
+                                SelectionMode="Single"
+                                SelectionChanged="ChuDeList_SelectionChanged">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                                        <SwipeItem Text="Xóa" BackgroundColor="Red"
+                                                   x:Name="SWDelete"
+                                                   CommandParameter="{Binding .}"
+                                                   Invoked="SWDelete_Invoked"></SwipeItem>
+                                        <SwipeItem Text="Sửa" BackgroundColor="LightGreen"
+                                                   x:Name="SWEdit"
+                                                   CommandParameter="{Binding .}"
+                                                   Invoked="SWEdit_Invoked"></SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <!--View of each card item-->
+                                <controls:CustomShadowFrame
+                                        Margin="10,2,10,5"
+                                        Padding="5,10,0,10"
+                                        BackgroundColor="{DynamicResource GrayShadowColor}"
+                                        BorderColor="{DynamicResource GrayShadowColor}"
+                                        BorderWidth="1"
+                                        CornerRadius="4"
+                                        HasShadow="True"
+                                        HorizontalOptions="FillAndExpand"
+                                        Radius="4"
+                                        VerticalOptions="FillAndExpand">
+
+                                    <Label Text="{Binding TenChuDe}"
+                                            Margin="5"
+                                            VerticalOptions="Center"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            FontSize="Medium"></Label>
+                                </controls:CustomShadowFrame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <Button
+                x:Name="AddChuDeBtn"
+                Grid.Row="1"
+                HorizontalOptions="Fill"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="Thêm chủ đề" 
+                Clicked="AddChuDeBtn_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
